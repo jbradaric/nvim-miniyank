@@ -129,13 +129,11 @@ function! miniyank#cycle(dir) abort
     end
     if a:dir > 0 " forward
       if s:pos+a:dir >= len(s:pastelist)
-          echoerr "miniyank: no more items!"
-          return
+          let s:pos -= len(s:pastelist)
       endif
     elseif a:dir < 0 " backward
       if s:pos+a:dir < 0
-          echoerr "miniyank: no previous items!"
-          return
+          let s:pos += len(s:pastelist)
       endif
     end
     let s:pos += a:dir
